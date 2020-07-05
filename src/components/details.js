@@ -88,17 +88,18 @@ function Details(props) {
             errorObj.errorname = "Name is required";
             isError = true;
         }
-        if (newdocInfos.email.indexOf("@") === -1 && newdocInfos.email.indexOf(".") === -1) {
+        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newdocInfos.email)))
+        {
             errorObj.erroremail = "valid email is required";
             isError = true;
         }
-        if (String(newdocInfos.mobileno).length < 10) {
+        if (String(newdocInfos.mobileno).length < 10 || String(newdocInfos.mobileno).length > 15) {
             errorObj.errormobileno = "valid mobile no. is required";
             isError = true;
 
         }
         let checkpass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-        if (newdocInfos.password.match(checkpass)) {
+        if (!newdocInfos.password.match(checkpass)) {
              errorObj.errorpassword =  "Password is required";
              isError = true;
         }
